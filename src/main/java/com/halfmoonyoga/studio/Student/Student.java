@@ -10,7 +10,9 @@ public class Student {
     @Id
     @GeneratedValue
     private Long studentId;
+    @Column(unique = true)
     private String name;
+    @Column(unique = true)
     private String photo;
     private String aboutMe;
     private int[] futureClasses;
