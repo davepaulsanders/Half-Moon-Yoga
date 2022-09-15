@@ -9,7 +9,6 @@ public class Student {
 
     @Id
     @GeneratedValue
-    @Column(name = "studentId")
     private Long studentId;
     private String name;
     private String photo;
@@ -21,7 +20,8 @@ public class Student {
 
     }
 
-    public Student(String name, String photo, String aboutMe, int[] futureClasses, int[] pastClasses) {
+    public Student(Long studentId, String name, String photo, String aboutMe, int[] futureClasses, int[] pastClasses) {
+        this.studentId = studentId;
         this.name = name;
         this.photo = photo;
         this.aboutMe = aboutMe;
