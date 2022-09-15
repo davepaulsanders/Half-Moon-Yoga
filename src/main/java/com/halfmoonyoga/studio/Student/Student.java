@@ -2,6 +2,7 @@ package com.halfmoonyoga.studio.Student;
 
 import javax.persistence.*;
 import java.util.Arrays;
+import java.util.UUID;
 
 
 @Entity
@@ -9,7 +10,7 @@ public class Student {
 
     @Id
     @GeneratedValue
-    private Long studentId;
+    private UUID studentId;
     @Column(unique = true)
     private String name;
     @Column(unique = true)
@@ -22,8 +23,8 @@ public class Student {
 
     }
 
-    public Student(Long studentId, String name, String photo, String aboutMe, int[] futureClasses, int[] pastClasses) {
-        this.studentId = studentId;
+    public Student(String name, String photo, String aboutMe, int[] futureClasses, int[] pastClasses) {
+        this.studentId = UUID.randomUUID();
         this.name = name;
         this.photo = photo;
         this.aboutMe = aboutMe;
@@ -31,13 +32,10 @@ public class Student {
         this.pastClasses = pastClasses;
     }
 
-    public Long getStudentId() {
+    public UUID getStudentId() {
         return studentId;
     }
 
-    public void setStudentId(Long studentId) {
-        this.studentId = studentId;
-    }
 
     public String getName() {
         return name;
