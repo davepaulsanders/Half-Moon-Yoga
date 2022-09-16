@@ -1,5 +1,7 @@
 package com.halfmoonyoga.studio.Student;
 
+import org.springframework.security.crypto.bcrypt.BCrypt;
+
 import javax.persistence.*;
 import java.util.Arrays;
 import java.util.UUID;
@@ -14,6 +16,9 @@ public class Student {
     @Column(unique = true)
     private String name;
     @Column(unique = true)
+    private String username;
+    @Column(unique = true)
+    private String password;
     private String photo;
     private String aboutMe;
     private int[] futureClasses;
@@ -23,9 +28,11 @@ public class Student {
 
     }
 
-    public Student(String name, String photo, String aboutMe, int[] futureClasses, int[] pastClasses) {
+    public Student(String name, String username, String password, String photo, String aboutMe, int[] futureClasses, int[] pastClasses) {
         this.studentId = UUID.randomUUID();
         this.name = name;
+        this.username = username;
+        this.password = BCrypt.hashpw(password, BCrypt.gensalt());
         this.photo = photo;
         this.aboutMe = aboutMe;
         this.futureClasses = futureClasses;
