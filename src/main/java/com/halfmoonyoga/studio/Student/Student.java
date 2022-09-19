@@ -21,6 +21,7 @@ public class Student {
     @Column(unique = true)
     private String username;
     @Column(unique = true)
+    @JsonIgnore
     private String password;
     private String photo;
     private String aboutMe;
