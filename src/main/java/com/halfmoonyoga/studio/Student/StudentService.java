@@ -23,7 +23,11 @@ public class StudentService {
         student.setPassword(passwordEncoder.encode(student.getPassword()));
         studentRepository.save(student);
     }
-
+    public void updateStudent(UUID studentId, Student student) {
+        if (studentRepository.findById(studentId).isPresent()) {
+            studentRepository.save(student);
+        }
+    }
     public void deleteStudent(UUID studentId) {
         studentRepository.deleteById(studentId);
     }

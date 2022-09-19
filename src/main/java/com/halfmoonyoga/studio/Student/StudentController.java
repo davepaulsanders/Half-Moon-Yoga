@@ -16,14 +16,19 @@ public class StudentController {
         return studentService.getAllStudents();
     }
 
-    @DeleteMapping("students/{studentId}")
-    public void deleteStudent(@PathVariable UUID studentId) {
-        studentService.deleteStudent(studentId);
-    }
-
     @PostMapping("/students")
     public void createStudent(@RequestBody Student student) {
         studentService.createStudent(student);
+    }
+
+    @PutMapping("/students/{studentId}")
+    public void updateStudent(@PathVariable UUID studentId, @RequestBody Student student) {
+        studentService.updateStudent(studentId, student);
+    }
+
+    @DeleteMapping("students/{studentId}")
+    public void deleteStudent(@PathVariable UUID studentId) {
+        studentService.deleteStudent(studentId);
     }
 
 }
