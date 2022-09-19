@@ -1,6 +1,7 @@
 package com.halfmoonyoga.studio.Student;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -9,7 +10,7 @@ import java.util.List;
 
 @Service
 public class StudentService {
-
+    @Autowired private PasswordEncoder passwordEncoder;
     @Autowired private StudentRepository studentRepository;
 
     public List<Student> getAllStudents() {
@@ -18,6 +19,7 @@ public class StudentService {
         return students;
     }
     public void createStudent(Student student) {
+        student.setPassword(passwordEncoder.encode(student.getPassword()));
         studentRepository.save(student);
     }
 
