@@ -1,5 +1,6 @@
 package com.halfmoonyoga.studio.Student;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.security.crypto.bcrypt.BCrypt;
 
 import javax.persistence.*;
@@ -18,6 +19,7 @@ public class Student {
     @Column(unique = true)
     private String username;
     @Column(unique = true)
+    @JsonIgnore
     private String password;
     private String photo;
     private String aboutMe;
