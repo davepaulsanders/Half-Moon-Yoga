@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 
 @Service
@@ -21,6 +22,10 @@ public class StudentService {
     public void createStudent(Student student) {
         student.setPassword(passwordEncoder.encode(student.getPassword()));
         studentRepository.save(student);
+    }
+
+    public void deleteStudent(UUID studentId) {
+        studentRepository.deleteById(studentId);
     }
 
 }

@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 public class StudentController {
@@ -13,6 +14,11 @@ public class StudentController {
     @GetMapping("/students")
     public List<Student> getAllStudents() {
         return studentService.getAllStudents();
+    }
+
+    @DeleteMapping("students/{studentId}")
+    public void deleteStudent(@PathVariable UUID studentId) {
+        studentService.deleteStudent(studentId);
     }
 
     @PostMapping("/students")
