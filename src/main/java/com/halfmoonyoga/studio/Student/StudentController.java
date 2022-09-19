@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 @RestController
@@ -16,6 +17,11 @@ public class StudentController {
         return studentService.getAllStudents();
     }
 
+    @GetMapping("/students/{studentId}")
+    public Optional<Student> findStudent(@PathVariable UUID studentId) {
+        return studentService.findStudent(studentId);
+
+    }
     @PostMapping("/students")
     public void createStudent(@RequestBody Student student) {
         studentService.createStudent(student);

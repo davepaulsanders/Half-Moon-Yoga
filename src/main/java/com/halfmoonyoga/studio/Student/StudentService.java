@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 
@@ -18,6 +19,10 @@ public class StudentService {
         List<Student> students = new ArrayList<>();
         studentRepository.findAll().forEach(students::add);
         return students;
+    }
+
+    public Optional<Student> findStudent(UUID studentId) {
+            return studentRepository.findById(studentId);
     }
     public void createStudent(Student student) {
         student.setPassword(passwordEncoder.encode(student.getPassword()));
