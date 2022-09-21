@@ -1,6 +1,7 @@
 package com.halfmoonyoga.studio.Student;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -27,6 +28,21 @@ public class StudentService {
     public void createStudent(Student student) {
         student.setPassword(passwordEncoder.encode(student.getPassword()));
         studentRepository.save(student);
+    }
+
+    public boolean login(String username, String password) {
+        Optional<Student> student = studentRepository.findByUsername(username);
+        if (student.equals()) {
+            boolean matches = BCrypt.checkpw(student.get().getPassword(), password);
+            if (matches) {
+                System.out.println("Logged in");
+                return true;
+            }
+        } else {
+            System.out.println("didn't work");
+            return false;
+        }
+    return false;
     }
     public void updateStudent(UUID studentId, Student student) {
         if (studentRepository.findById(studentId).isPresent()) {

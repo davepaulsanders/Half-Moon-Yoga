@@ -27,6 +27,11 @@ public class StudentController {
         studentService.createStudent(student);
     }
 
+    @PostMapping("/students/login")
+    public void login(@RequestBody String username, String password ) {
+        studentService.login(username, password);
+    }
+
     @PutMapping("/students/{studentId}")
     public void updateStudent(@PathVariable UUID studentId, @RequestBody Student student) {
         studentService.updateStudent(studentId, student);
